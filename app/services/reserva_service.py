@@ -33,6 +33,11 @@ async def registrar_reserva(reserva: ReservaCreate):
 
     return {"id": nuevo_id, **reserva_dict}
 
+"""
+Procesa una nueva reserva: valida disponibilidad, calcula días de estadía,
+determina el costo total y cambia el estado de la habitación a Ocupada.
+"""
+
 async def cancelar_reserva(reserva_id: str):
     reserva = await reserva_repository.get_reserva_by_id(reserva_id)
     if not reserva:
