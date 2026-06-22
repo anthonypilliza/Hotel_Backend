@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.controllers import cliente_controller, habitacion_controller, reserva_controller, factura_controller, usuario_controller,contabilidad_controller, reporte_controller
+from app.controllers import cliente_controller, habitacion_controller, reserva_controller, factura_controller, usuario_controller,contabilidad_controller, reporte_controller, parametro_controller
 
 
 app = FastAPI(
@@ -16,6 +16,7 @@ app.include_router(factura_controller.router)
 app.include_router(usuario_controller.router)
 app.include_router(contabilidad_controller.router)
 app.include_router(reporte_controller.router)
+app.include_router(parametro_controller.router)
 @app.get("/")
 async def root():
     return {"mensaje": "¡Servidor de Reservas Hotel UPS en línea!"}
