@@ -19,3 +19,4 @@ async def consultar_historial_cliente(cedula: str):
         raise HTTPException(status_code=404, detail="Cliente no encontrado.")
     cliente["id"] = str(cliente["_id"])
     return cliente
+

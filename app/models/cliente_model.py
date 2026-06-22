@@ -17,3 +17,4 @@ class ClienteCreate(BaseModel):
 class ClienteResponse(ClienteCreate):
     id: str
     historial_reservas: List[ReservaHistorial] = []
+
