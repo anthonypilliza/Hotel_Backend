@@ -1,6 +1,7 @@
 # Tarea T02.03 - Construcción de aplicación de software
 # Desarrollado por Grupo 4: Juan Díaz, Jhon Ramírez, Anthony Pilliza, David Ramos, Erick Lema
 
+
 from fastapi import FastAPI
 from app.controllers import cliente_controller, habitacion_controller, reserva_controller, factura_controller, usuario_controller,contabilidad_controller, reporte_controller, parametro_controller
 from fastapi.middleware.cors import CORSMiddleware
