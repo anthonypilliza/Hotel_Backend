@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.controllers import cliente_controller, habitacion_controller,reserva_controller,factura_controller
+from app.controllers import cliente_controller, habitacion_controller, reserva_controller, factura_controller, usuario_controller
 
 app = FastAPI(
     title="Sistema de Reserva de Hoteles UPS",
@@ -12,6 +12,7 @@ app.include_router(cliente_controller.router)
 app.include_router(habitacion_controller.router)
 app.include_router(reserva_controller.router)
 app.include_router(factura_controller.router)
+app.include_router(usuario_controller.router)
 
 @app.get("/")
 async def root():
