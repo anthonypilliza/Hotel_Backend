@@ -8,8 +8,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="Sistema de Reserva de Hoteles UPS",
-    description="API para la gestión de reservas, habitaciones y facturación.",
-    version="1.0.0"
+    description="Backend desarrollado para la Tarea T02.03. Incluye gestión de reservas, habitaciones, contabilidad y facturación.",
+    version="1.0.0",
+    contact={
+        "name": "Equipo de Desarrollo - Grupo 4",
+        "url": "https://www.ups.edu.ec"
+    }
 )
 app.add_middleware(
     CORSMiddleware,
