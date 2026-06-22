@@ -1,13 +1,19 @@
 from fastapi import FastAPI
 from app.controllers import cliente_controller, habitacion_controller, reserva_controller, factura_controller, usuario_controller,contabilidad_controller, reporte_controller, parametro_controller
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="Sistema de Reserva de Hoteles UPS",
     description="API para la gestión de reservas, habitaciones y facturación.",
     version="1.0.0"
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # En producción aquí va la URL del frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Conectamos el controlador de clientes
 app.include_router(cliente_controller.router)
 app.include_router(habitacion_controller.router)
