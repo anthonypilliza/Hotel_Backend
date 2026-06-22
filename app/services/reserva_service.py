@@ -32,3 +32,17 @@ async def registrar_reserva(reserva: ReservaCreate):
     await reserva_repository.actualizar_estado_habitacion(reserva.habitacion_numero, "Ocupada")
 
     return {"id": nuevo_id, **reserva_dict}
+
+async def cancelar_reserva(reserva_id: str):
+    reserva = await reserva_repository.get_reserva_by_id(reserva_id)
+    if not reserva:
+        raise HTTPException(status_code=404, detail="Error: Reserva no encontrada.")
+    
+    if reserva.get("estado") == "Cancelada":
+        raise HTTPException(status_code=400, detail="Error: La reserva ya se encuentra cancelada.")
+        
+    # Cambiar estado de la reserva a "Cancelada" y liberar la habitación a "Libre" (RF-07)
+    await reserva_repository.actualizar_estado_reserva(reserva_id, "Cancelada")
+    await reserva_repository.actualizar_estado_habitacion(reserva.get("habitacion_numero"), "Libre")
+    
+    return {"mensaje": f"Reserva {reserva_id} cancelada y habitación liberada exitosamente."}
