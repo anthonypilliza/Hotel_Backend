@@ -1,0 +1,37 @@
+# Tarea T02.03 - Construcción de aplicación de software
+# Desarrollado por Grupo 4: Juan Díaz, Jhon Ramírez, Anthony Pilliza, David Ramos, Erick Lema
+
+
+from fastapi import FastAPI
+from app.controllers import cliente_controller, habitacion_controller, reserva_controller, factura_controller, usuario_controller,contabilidad_controller, reporte_controller, parametro_controller, health_controller
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI(
+    title="Sistema de Reserva de Hoteles UPS",
+    description="Backend desarrollado para la Tarea T02.03. Incluye gestión de reservas, habitaciones, contabilidad y facturación.",
+    version="1.0.0",
+    contact={
+        "name": "Equipo de Desarrollo - Grupo 4",
+        "url": "https://www.ups.edu.ec"
+    }
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # En producción aquí va la URL del frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# Conectamos el controlador de clientes
+app.include_router(cliente_controller.router)
+app.include_router(habitacion_controller.router)
+app.include_router(reserva_controller.router)
+app.include_router(factura_controller.router)
+app.include_router(usuario_controller.router)
+app.include_router(contabilidad_controller.router)
+app.include_router(reporte_controller.router)
+app.include_router(parametro_controller.router)
+app.include_router(health_controller.router)
+@app.get("/")
+async def root():
+    return {"mensaje": "¡Servidor de Reservas Hotel UPS en línea!"}
